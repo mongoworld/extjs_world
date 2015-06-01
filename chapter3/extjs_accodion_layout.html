@@ -1,0 +1,38 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/5
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 3. Accordion Layout</title>
+<link href="../packages/ext-theme-gray/build/resources/ext-theme-gray-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.Panel', {
+	    title: 'Accordion',
+	    width: 500,
+	    height: 500,
+	    layout : 'accordion',
+	    items: [{
+	        title: 'first',
+	        html: 'contents Page1'
+	    },{
+	        title: 'second',
+	        html: 'contents Page2'
+	    },{
+	        title: 'third',
+	        html: 'contents Page3'
+	    },{
+	        title: 'fourth',
+	        html: 'contents Page4'
+	    }],
+	    renderTo: Ext.getBody()
+	});
+})
+</script>
+</head>
+<body></body>
+</html>

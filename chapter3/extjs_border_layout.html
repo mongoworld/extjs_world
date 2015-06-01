@@ -1,0 +1,55 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/5
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 3. Border Layout </title>
+<link href="../packages/ext-theme-gray/build/resources/ext-theme-gray-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.Panel', {
+	    width: 500,
+	    height: 500,
+	    layout: 'border',
+	    items: [{
+	    	region: 'south',
+	        title: 'South',
+        	layout: 'fit',
+	        flex : 1,
+	        split: true
+	    },{
+	    	region:'north',
+	        title: 'North',
+	        layout: 'fit',
+	        flex : 1,
+	        split: true
+	    },{
+	    	region: 'center',
+	        title: 'Center',
+	        layout: 'fit',
+	        flex : 1,
+	        split: true
+	    },{
+	    	region: 'east',
+	        title: 'East',
+	        layout: 'fit',
+	        flex : 1,
+	        split: true
+	    },{
+	    	region: 'west',
+	        title: 'West',
+	        layout: 'fit',
+	        flex : 1,
+	        split: true
+	    }],
+	    renderTo: Ext.getBody()
+	});
+})
+</script>
+</head>
+<body></body>
+</html>

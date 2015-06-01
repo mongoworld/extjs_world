@@ -1,0 +1,44 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/5
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 3. Column Layout</title>
+<link href="../packages/ext-theme-gray/build/resources/ext-theme-gray-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.Panel', {
+	    title: 'Column',
+	    width: 500,
+	    height: 500,
+	    layout:'column',
+	    items: [{
+	        title: 'Column 1',
+	        columnWidth: 0.33,
+	        items :[{
+	        	xtype : 'button',
+	        	text: 'button1'
+	        }]
+	    },{
+	        title: 'Column 2',
+	        columnWidth: 0.33,
+	        items :[{
+	        	xtype : 'button',
+	        	text: 'button2'
+	        }]
+	    },{
+	        title: 'Column 3',
+	        columnWidth: 0.34,
+	        html : 'contents'
+	    }],
+	    renderTo: Ext.getBody()
+	});
+})
+</script>
+</head>
+<body></body>
+</html>
