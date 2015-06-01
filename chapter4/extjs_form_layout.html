@@ -1,0 +1,32 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/6
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 4. Form Layout</title>
+<link href="../packages/ext-theme-gray/build/resources/ext-theme-gray-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.Panel', {
+	    width: 500,
+	    height: 500,
+	    title: "Form",
+	    layout: 'form',
+	    renderTo: Ext.getBody(),
+	    items: [{
+	       xtype : 'textfield',
+	       fieldLabel: 'First TextField'
+	    },{
+	    	xtype : 'textfield',
+	        fieldLabel: 'Second TextField'
+	    }]
+	});
+})
+</script>
+</head>
+<body></body>
+</html>

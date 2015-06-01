@@ -1,0 +1,46 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/6
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 4. Table Layout</title>
+<link href="../packages/ext-theme-gray/build/resources/ext-theme-gray-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.Panel', {
+	    title: 'Table Layout',
+	    width: 300,
+	    height: 300,
+	    layout: {
+	        type: 'table',
+	        // columns count must be specified
+	        columns: 3
+	    },
+	    defaults: {
+	        bodyStyle: 'padding:20px'
+	    },
+	    items: [{
+	        html: 'Row1/Cell1 + Row2/Cell1',
+	        rowspan : 2,
+	        height : 112
+	    },{
+	        html: 'Row1/Cell2 + Row1/Cell3',
+	        colspan : 2
+	    },{
+	    	// reason : layout -> columns value is 3 (auto new line)
+	        html: 'Row2/Cell2'
+	    },{
+	    	// reason : layout -> columns value is 3 (auto new line)
+	        html: 'Row2/Cell3'
+	    }],
+	    renderTo: Ext.getBody()
+	});
+})
+</script>
+</head>
+<body></body>
+</html>
