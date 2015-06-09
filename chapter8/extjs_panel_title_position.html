@@ -1,0 +1,63 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/10
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 8. Panel's Title Position</title>
+<link href="../packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	//POSITION : TOP
+	Ext.create('Ext.Panel', {
+	    width: 300,
+	    height: 300,
+	    title : 'POSITION : TOP',
+	    headerPosition : 'top',
+	    margin : '0 3 0 0',
+	    renderTo: document.getElementById("top")
+	});
+	//POSITION : BOTTOM
+	Ext.create('Ext.Panel', {
+	    width: 300,
+	    height: 300,
+	    title : 'POSITION : BOTTOM',
+	    headerPosition : 'bottom',
+	    margin : '0 3 0 0',
+	    renderTo: document.getElementById("bottom")
+	});
+	//POSITION : LEFT
+	Ext.create('Ext.Panel', {
+	    width: 300,
+	    height: 300,
+	    title : 'POSITION : LEFT',
+	    headerPosition : 'left',
+	    margin : '5 3 0 0',
+	    renderTo: document.getElementById("left")
+	});
+	//POSITION : RIGHT
+	Ext.create('Ext.Panel', {
+	    width: 300,
+	    height: 300,
+	    title : 'POSITION : RIGHT',
+	    headerPosition : 'right',
+	    margin : '5 3 0 0',
+	    renderTo: document.getElementById("right")
+	});
+	
+})
+</script>
+</head>
+<body>
+	<div id="top" style="float: left;"></div>
+	<div id="bottom" style="float: left;"></div>
+	
+	<div style="clear: both;"></div>
+	
+	<div id="left" style="float: left;"></div>
+	<div id="right" style="float: left;"></div>
+</body>
+</html>

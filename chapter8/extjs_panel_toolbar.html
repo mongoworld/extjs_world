@@ -1,0 +1,41 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/10
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 8. Panel + Toolbar</title>
+<link href="../packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.Panel', {
+	    width: 300,
+	    height: 300,
+	    title : 'Title Configs',
+	    dockedItems : [{
+	    	//items add tool bar
+	    	xtype : 'toolbar',
+	    	// sub items buttons
+	    	items : [{
+	    		xtype : 'button',
+	    		text :'copy'
+	    	},{
+	    		xtype : 'button',
+	    		text :'cut'
+	    	},{
+	    		xtype : 'button',
+	    		text :'paste'
+	    	}]
+	    }],
+	    renderTo: Ext.getBody()
+	});
+})
+</script>
+</head>
+<body>
+
+</body>
+</html>
