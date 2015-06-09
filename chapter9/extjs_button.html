@@ -1,0 +1,114 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/11
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 9. Button</title>
+<link href="../packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.Panel', {
+	    width: 480,
+	    height: 200,
+	    layout: {
+	        type: 'hbox',   
+            align: 'center',
+            pack : 'center'
+	    },
+	    items : [
+		// Button Small Size
+        {
+	    	xtype : 'button',
+	    	text : 'small',
+	    	scale : 'small'
+	    },
+	 	// Button Midium Size
+	    {
+	    	xtype : 'button',
+	    	text : 'midium',
+	    	scale : 'medium'
+	    },
+	 	// Button Large Size
+	    {
+	    	xtype : 'button',
+	    	text : 'large',
+	    	scale : 'large'
+	    }],
+	    tbar : [
+		// 1. DEFAULT BUTTON Component
+	    {
+	    	xtype : 'button',
+	    	text : 'default button'
+	    },
+	 	// 2. Toggle Button - enableToggle: true
+	    {
+	    	xtype : 'button',
+	    	enableToggle: true,
+	    	text : 'toggle button'
+	    },
+	    // 3. Menu Button - configs menu - Json Array
+	    {
+	    	xtype : 'button',
+	    	text : 'menu button',
+	    	menu : [{
+	    		text : 'menu1'
+	    	},{
+	    		text : 'menu2'
+	    	},{
+	    		text : 'menu3'
+	    	}]
+	    },
+	    // 4. Split Button(Menu) - configs menu - Json Array
+	    {
+	    	xtype : 'splitbutton',
+	    	text : 'split button',
+	    	menu : [{
+	    		text : 'split1'
+	    	},{
+	    		text : 'split2'
+	    	},{
+	    		text : 'split3'
+	    	}]
+	    }],
+	    fbar : [
+         // 5. Group Button
+         {
+	    	 xtype: 'segmentedbutton',
+             items: [{
+            	 xtype : 'button',
+                 text: 'group1'
+             }, {
+            	 xtype : 'button',
+                 text: 'group2'
+             }, {
+            	 xtype : 'button',
+                 text: 'group3'
+             }]
+	    },
+	    // 6. Group Toggle Button - allowMultiple: true
+	    {
+	    	 xtype: 'segmentedbutton',
+	    	 allowMultiple: true,
+             items: [{
+            	 xtype : 'button',
+                 text: 'group toggle1'
+             }, {
+            	 xtype : 'button',
+                 text: 'group toggle2'
+             }, {
+            	 xtype : 'button',
+                 text: 'group toggle3'
+             }]
+	    }],
+	    renderTo: Ext.getBody()
+	});
+})
+</script>
+</head>
+<body>
+</body>
+</html>
