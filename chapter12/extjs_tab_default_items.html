@@ -1,0 +1,33 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/14
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS 기초강좌 11. TabPanel</title>
+<link href="../packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.tab.Panel',{
+		width : 300,
+		height : 300,
+		items : [{
+			title : 'TAB1',
+			items : [{
+				xtype : 'button',
+				text : 'Button Component'
+			}]
+		},{
+			title : 'TAB2',
+			html : 'Tab2 Body'
+		}],
+		renderTo : Ext.getBody()
+	});
+})
+</script>
+</head>
+<body></body>
+</html>
