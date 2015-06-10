@@ -1,0 +1,28 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/12
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 10. MessageBox</title>
+<link href="../packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.Msg.alert(
+		// TITLE영역
+		"자바스크립트 알림",
+		// BODY 영역
+		"이것이 ALERT창입니다.",
+		//ok버튼 클릭 핸들링
+		function(){
+			alert("!!");
+	});
+})
+</script>
+</head>
+<body>
+</body>
+</html>

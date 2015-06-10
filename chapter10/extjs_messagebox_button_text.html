@@ -1,0 +1,31 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/12
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 10. MessageBox</title>
+<link href="../packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.MessageBox.show({
+		title : '자바스크립트 알림',
+		msg : '문구변경버튼',
+		icon : ﻿﻿Ext.MessageBox.QUESTION,
+		buttonText : {
+	           ok : '오키',
+	           no : '노',
+	           yes : '예스',
+	           cancel : '캔슬'
+
+		}
+	});
+})
+</script>
+</head>
+<body>
+</body>
+</html>
