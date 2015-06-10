@@ -1,0 +1,44 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/13
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 11. Window</title>
+<link href="../packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	//생성되었지만 화면에는 보이지 않는 윈도우 컴포넌트를 winObject에 담아준다.
+	var winObject = Ext.create('Ext.window.Window',{
+							width : 300,
+							height : 200,
+							autoShow : false,
+							maximizable : true,
+							modal : true,
+							title : 'Windows Example',
+							html : '<h1>ExtJS WINDOW</h1>'
+						});
+	
+	Ext.create('Ext.Panel',{
+		width : 400,
+		height : 400,
+		title : 'Panel',
+		items : [{
+			xtype : 'button',
+			text : 'Click',
+			handler : function(){
+				//클릭이벤트 발생시, winObject에 담긴 윈도우 객체를 보여준다
+				winObject.show();
+			}
+		}],
+		renderTo : Ext.getBody()
+	})
+})
+</script>
+</head>
+<body>
+</body>
+</html>
