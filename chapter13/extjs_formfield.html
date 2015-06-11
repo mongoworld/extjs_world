@@ -1,0 +1,99 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/15
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 13. form field</title>
+<link href="../packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.Panel',{
+		title : 'Default Form Field',
+		items : [{
+			xtype : 'textfield',
+			width : 700,
+			fieldLabel : 'text'
+		},{
+			xtype : 'textfield',
+			inputType : 'password',
+			width : 700,
+			fieldLabel : 'password'
+		},{
+			xtype : 'filefield',
+			width : 700,
+			fieldLabel : 'file'
+		},{
+			xtype : 'filebutton',
+			text : 'upload button'
+		},{
+			xtype : 'numberfield',
+			width : 700,
+			fieldLabel : 'number'
+		},{
+			xtype : 'datefield',
+			width : 700,
+			fieldLabel : 'date',
+			maxValue: new Date()
+		},{
+			xtype : 'timefield',
+			width : 700,
+			fieldLabel : 'time'
+		},{
+			xtype : 'textarea',
+			width : 700,
+			fieldLabel : 'textarea'
+		},{
+			xtype : 'checkbox',
+			fieldLabel : 'checkbox',
+			value : 'yes'
+		},
+		{
+			xtype : 'panel',
+			layout : 'hbox',
+			items : [{
+		        xtype: 'radiofield',
+		        name: 'radio1',
+		        value: 'M',
+		        boxLabel: 'Man',
+		        fieldLabel : 'Sex'
+			  }, {
+		        xtype: 'radiofield',
+		        name: 'radio1',
+		        value: 'W',
+		        boxLabel: 'Woman'
+		  	}]
+		},
+		{
+			xtype : 'panel',
+			layout : 'fit',
+			title : 'editor',
+			items : [
+				{
+					xtype : 'htmleditor'
+				}
+	        ]
+		},
+		{
+			xtype : 'panel',
+			layout : 'fit',
+			title : 'datepicker',
+			layout : 'hbox',
+			items : [
+				{
+					xtype : 'datepicker'
+				},{
+					xtype : 'monthpicker'
+				}
+         	]
+		}],
+		renderTo : Ext.getBody()
+	})
+})
+</script>
+</head>
+<body></body>
+</html>
