@@ -1,0 +1,46 @@
+﻿<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/18
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 16. Grid Panel - Locking Cell</title>
+<link href="../packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css" rel="stylesheet">
+<script type="text/javascript" src="../ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.grid.Panel',{
+		title : 'Grid Example - Locking Cell',
+		//Add
+		width : 300,
+		columns : [{
+			text : 'first column',
+			locked : true,
+			dataIndex : 'first'
+		},{
+			text : 'second column',
+			locked : true,
+			dataIndex : 'second'
+		},{
+			text : 'third column',
+			dataIndex : 'third'
+		},
+		//Add
+		{
+			text : 'fourth column',
+			dataIndex : 'fourth'
+		}],
+		store : Ext.create('Ext.data.Store',{
+												   //fourth fields add
+				fields : ['first','second','third','fourth'],
+				data : [['1-1','1-2','1-3','1-4'],['2-1','2-2','2-3','2-4'],['3-1','3-2','3-3','3-4']]
+		}),
+		renderTo : Ext.getBody(),
+	})
+})
+</script>
+</head>
+<body></body>
+</html>
