@@ -1,0 +1,58 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/19
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 17. GridPanel - Ajax XML</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.grid.Panel',{
+		title : 'Grid Example',
+		columns : [{
+			text : 'first column',
+			flex : 1,
+			dataIndex : 'first'
+		},{
+			text : 'second column',
+			flex : 1,
+			dataIndex : 'second'
+		},{
+			text : 'third column',
+			flex : 1,
+			dataIndex : 'third'
+		},
+		{
+			text : 'fourth column',
+			flex : 1,
+			dataIndex : 'fourth'
+		}],
+		// Code Chnage
+		store : Ext.create('Ext.data.Store',{
+				fields : ['first','second','third','fourth'],
+				autoLoad : true,
+				 proxy : {
+                     type : 'ajax',
+                     api : {
+                         read : './grid_data1.xml'
+                     },
+                     reader : {
+                         type : 'xml',
+                         rootProperty : 'data',
+                         record : 'row',
+                     }
+                 }
+		}),
+		renderTo : Ext.getBody(),
+	})
+})
+</script>
+</head>
+<body>
+
+</body>
+</html>
