@@ -1,0 +1,98 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/120
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 18. GridPanel - Grid Reconfigure</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	
+	/////////// grid_data2_1.json file Load Columns / Data Store /////////// 
+	var column_2_1 = [{
+		text : 'IDX',
+		flex : 1,
+		dataIndex : 'idx'
+	},{
+		text : 'TITLE',
+		flex : 1,
+		dataIndex : 'title'
+	},{
+		text : 'CONTENTS',
+		flex : 1,
+		dataIndex : 'contents'
+	}];
+	var store_2_1 = Ext.create('Ext.data.Store',{
+							autoLoad : true,
+							fields : ['idx','title','contents'],
+							 proxy : {
+					             type : 'ajax',
+					             api : {
+					                 read : './grid_data2_1.json'
+					             },
+					             reader : {
+					                 type : 'json',
+					                 rootProperty : 'data'
+					             }
+					         }
+					});
+	
+	/////////// grid_data2_2.json file Load Columns / Data Store ///////////
+	var column_2_2 = [{
+		text : 'PRI',
+		flex : 1,
+		dataIndex : 'pri'
+	},{
+		text : 'SUBJECT',
+		flex : 1,
+		dataIndex : 'subject'
+	},{
+		text : 'TXT',
+		flex : 1,
+		dataIndex : 'txt'
+	}];
+	
+	var store_2_2 = Ext.create('Ext.data.Store',{
+							autoLoad : true,
+							fields : ['pri','subject','txt'],
+							 proxy : {
+					             type : 'ajax',
+					             api : {
+					                 read : './grid_data2_2.json'
+					             },
+					             reader : {
+					                 type : 'json',
+					                 rootProperty : 'data'
+					             }
+					         }
+					});
+	
+	
+	Ext.create('Ext.grid.Panel',{
+		id : 'grid_frame',
+		height : 300,
+		title : 'Grid Example',
+		bbar : [{
+			xtype : 'button',
+			text : '2_1 JSON Load',
+			handler : function(){
+				Ext.getCmp("grid_frame").reconfigure(store_2_1,column_2_1);
+			}
+		},{
+			xtype : 'button',
+			text : '2_2 JSON Load',
+			handler : function(){
+				Ext.getCmp("grid_frame").reconfigure(store_2_2,column_2_2);
+			}
+		}],
+		renderTo : Ext.getBody(),
+	})
+})
+</script>
+</head>
+<body></body>
+</html>
