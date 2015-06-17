@@ -1,0 +1,65 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/21
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 19. GridPanel - Grid Default Paging</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	var data_store = Ext.create('Ext.data.Store',{
+		autoLoad : true	,
+		pageSize : 5,
+		fields : ['title','contents','author','create_date'],
+		proxy : {
+			type : 'ajax',
+			api : {
+				read : './server.jsp'
+			},
+			reader : {
+				type : 'json',
+				rootProperty : 'data'
+				//totalProperty - default(total) 
+				//successProperty - default(success)
+			}
+		}
+	});
+	
+	Ext.create('Ext.grid.Panel',{
+		title : 'Grid Paging Example',
+		columns : [{
+			text : '제목',
+			flex : 1,
+			dataIndex : 'title'
+		},{
+			text : '내용',
+			flex : 1,
+			dataIndex : 'contents'
+		},{
+			text : '작성자',
+			flex : 1,
+			dataIndex : 'author'
+		},{
+			text : '등록일',
+			flex : 1,
+			dataIndex : 'create_date'
+		}],
+		store : data_store,
+		bbar : {
+			xtype : 'pagingtoolbar',
+			store : data_store,
+			displayInfo : true,
+			displayMsg : '{0}/{1} Total - {2}',
+			emptyMsg : 'No Data'
+		},
+		renderTo : Ext.getBody()
+	})
+})
+</script>
+</head>
+<body></body>
+</html>
