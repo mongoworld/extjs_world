@@ -1,0 +1,56 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/22
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 20. GridPanel - BigData</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.grid.Panel',{
+		title : 'Grid Paging Example',
+		width : 500,
+		height : 300,
+		columns : [{
+			text : '제목',
+			flex : 1,
+			dataIndex : 'title'
+		},{
+			text : '포럼타이틀',
+			flex : 1,
+			dataIndex : 'forumtitle'
+		},{
+			text : '작성자명',
+			flex : 1,
+			dataIndex : 'username'
+		},{
+			text : '댓글수',
+			flex : 1,
+			dataIndex : 'replycount'
+		}],
+		store : Ext.create('Ext.data.BufferedStore',{
+			pageSize : 100,
+			autoLoad : true	,
+			fields : ['title','forumtitle','username','replycount'],
+			proxy : {
+				type : 'jsonp',
+				api : {
+					read : 'https://www.sencha.com/forum/remote_topics/index.php'
+				},
+				reader : {
+					rootProperty : 'topics',
+					totalProperty : 'totalCount'
+				}
+			}
+		}),
+		renderTo : Ext.getBody()
+	})
+})
+</script>
+</head>
+<body></body>
+</html>
