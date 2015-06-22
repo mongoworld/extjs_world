@@ -1,0 +1,76 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/23
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 21. GridPanel - Cell/Row Plugin Compare</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.grid.Panel',{
+		//plugins: [Ext.create('Ext.grid.plugin.CellEditing',{clicksToEdit: 1})],
+		plugins: [Ext.create('Ext.grid.plugin.RowEditing', {clicksToEdit: 1})],
+		height : 300,
+		title : 'Grid Paging Example',
+		columns : [{
+			text : '번호',
+			flex : 1,
+			dataIndex : 'pk'
+		},{
+			text : '제목',
+			flex : 1,
+			dataIndex : 'title',
+			editor: {
+				//default : xtype = 'textfield' 
+                allowBlank: false
+            }
+		},{
+			text : '내용',
+			flex : 1,
+			dataIndex : 'contents',
+			editor: {
+				xtype : 'textarea',
+                allowBlank: false
+            }
+		},{
+			text : '작성자',
+			flex : 1,
+			dataIndex : 'author',
+			editor: {
+				//default : xtype = 'textfield'
+                allowBlank: false
+            }
+		},{
+			text : '등록일',
+			flex : 1,
+			dataIndex : 'create_date',
+			editor: {
+				//default : xtype = 'textfield'
+				allowBlank: false
+            }
+		}],
+		store : Ext.create('Ext.data.Store',{
+			autoLoad : true	,
+			fields : ['title','contents','author','create_date'],
+			proxy : {
+				type : 'ajax',
+				api : {
+					read : './server2_select.jsp'
+				},
+				reader : {
+					type : 'json',
+					rootProperty : 'data'
+				}
+			}
+		}),
+		renderTo : Ext.getBody()
+	})
+})
+</script>
+</head>
+<body></body>
+</html>
