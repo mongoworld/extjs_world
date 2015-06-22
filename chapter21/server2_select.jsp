@@ -19,8 +19,8 @@ try{
 	*	JDBC 정보 설정 (MySQL)
 	*/
 	String url = "jdbc:mysql://localhost:3306/test";
-	String id = "root";
-	String pwd = "autoset";                             
+	String id = "ID";
+	String pwd = "PASSWORD";                             
 	
 	Class.forName("com.mysql.jdbc.Driver");
 	conn=DriverManager.getConnection(url,id,pwd);
