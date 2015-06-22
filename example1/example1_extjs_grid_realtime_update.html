@@ -1,0 +1,123 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/24
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Example - GridPanel RealTime Cell Update</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript">
+// Global Variable
+// Ctrl + z -> before data set
+Ext.define('globalData', { 
+    singleton: true, 
+    temp: null 
+});  
+
+Ext.onReady(function(){
+	Ext.create('Ext.grid.Panel',{
+		plugins: [Ext.create('Ext.grid.plugin.CellEditing',{clicksToEdit: 1})],
+		height : 300,
+		title : 'ExtJS Example',
+		columns : [{
+			text : '번호',
+			flex : 1,
+			dataIndex : 'pk',
+			hidden : true
+		},{
+			text : '제목',
+			flex : 1,
+			dataIndex : 'title',
+			editor: {
+                allowBlank: false
+            }
+		},{
+			text : '내용',
+			flex : 1,
+			dataIndex : 'contents',
+			editor: {
+				xtype : 'textarea',
+                allowBlank: false
+            }
+		},{
+			text : '작성자',
+			flex : 1,
+			dataIndex : 'author',
+			editor: {
+                allowBlank: false
+            }
+		},{
+			text : '등록일',
+			flex : 1,
+			dataIndex : 'create_date',
+			editor: {
+				allowBlank: false
+            }
+		}],
+		store : Ext.create('Ext.data.Store',{
+			//add
+			autoSync : true,
+			autoLoad : true	,
+			fields : ['title','contents','author','create_date'],
+			proxy : {
+				type : 'ajax',
+				api : {
+					//add
+					update : './server2_update.jsp',
+					read : './server2_select.jsp'
+				},
+				reader : {
+					type : 'json',
+					rootProperty : 'data'
+				},
+				//add
+				writer : {
+					type : 'json',
+					writeAllFields : true,
+					encode : true,
+					rootProperty : 'data'
+				}
+			}
+		}),
+		listeners : {
+			//add
+			edit: function (editor, e, eOpts) {
+				if(globalData.temp == null) {
+					globalData.temp = []; 
+				}
+				globalData.temp.push([editor.context.rowIdx, editor.context.field, editor.context.originalValue]);
+            }, 
+            //add
+            afterrender: function(obj, opt) {
+            	new Ext.util.KeyMap({
+                    target: document,
+                    binding: [{
+                        key: "z",
+                        ctrl:true,
+                        fn: function(){
+                             if(globalData.temp != null && globalData.temp.length > 0) {
+                            	 var store = obj.getStore();
+                            	 var temp = globalData.temp;
+                            	 var length = temp.length-1;
+                            	 
+                            	 store.getData().getAt(temp[length][0]).set(temp[length][1],temp[length][2]);
+                            	 globalData.temp.pop(length);
+                             } else {
+                            	 return;
+                             }
+                        }
+                    }],
+                    scope: this
+                }); 
+            }
+		},
+		renderTo : Ext.getBody()
+	})
+})
+</script>
+</head>
+<body></body>
+</html>
