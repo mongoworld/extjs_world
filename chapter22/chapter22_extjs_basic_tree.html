@@ -1,0 +1,71 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/25
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 22. TreePanel - Tree Basic Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.tree.Panel',{
+		width : 500,
+		height : 800,
+		title : 'Tree Example',
+		store : Ext.create('Ext.data.TreeStore',{
+			 root : {
+				    text: '몽고소프트',
+				    expanded: true,
+				    children: [
+						{ 
+							leaf:true, 
+							text: '대표-세종대왕' 
+						},{
+				            text: '경영지원팀',
+				            expanded: true,
+				            children: [{ 
+			                		leaf:true, 
+			                		text: '부장-홍길동' 
+		                		}]
+				        },{
+				            text: '기획팀',
+				            expanded: true,
+				            children: [{ 
+				            		leaf:true, 
+				            		text: '차장-이순신' 
+			            		},{ 
+		            				leaf:true, 
+		            				text: '과장-장영실' 
+	            				}]
+				        },{
+				            text: '개발팀',
+				            expanded: false,
+				            children: [{ 
+			                		leaf:true, 
+			                		text: '부장-스티브잡스' 
+		                		},{ 
+	                				leaf:true, 
+	                				text: '차장-빌게이츠' 
+                				},{ 
+              						leaf:true, 
+              						text: '대리-주커버크' 
+             						},{ 
+             							leaf:true, 
+             							text: '사원-몽고' 
+           						}]
+				        }
+				    ]
+				}
+		}),
+		renderTo : Ext.getBody(),
+	})
+})
+</script>
+</head>
+<body>
+
+</body>
+</html>
