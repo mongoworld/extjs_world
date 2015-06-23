@@ -1,0 +1,41 @@
+{
+children: [
+	{ 
+		leaf:true, 
+		text: '대표-세종대왕' 
+	},{
+        text: '경영지원팀',
+        expanded: true,
+        children: [{ 
+        		leaf:true, 
+        		text: '부장-홍길동' 
+    		}]
+    },{
+        text: '기획팀',
+        expanded: true,
+        children: [{ 
+        		leaf:true, 
+        		text: '차장-이순신' 
+    		},{ 
+				leaf:true, 
+				text: '과장-장영실' 
+			}]
+    },{
+        text: '개발팀',
+        expanded: false,
+        children: [{ 
+        		leaf:true, 
+        		text: '부장-스티브잡스' 
+    		},{ 
+				leaf:true, 
+				text: '차장-빌게이츠' 
+			},{ 
+				leaf:true, 
+				text: '대리-주커버크' 
+				},{ 
+					leaf:true, 
+					text: '사원-몽고' 
+			}]
+    }
+]
+}

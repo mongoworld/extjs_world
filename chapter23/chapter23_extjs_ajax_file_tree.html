@@ -1,0 +1,41 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/26
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 23. TreePanel - Tree Ajax File Load Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.tree.Panel',{
+		width : 500,
+		height : 800,
+		title : 'Tree Ajax File Load Example',
+		store : Ext.create('Ext.data.TreeStore',{
+						 root : {
+							    text: '몽고소프트',
+							    expanded: false
+						 },
+						 proxy: {
+		                    type: 'ajax',
+		                    url: './tree.json',
+		                    reader: {
+		                        type: 'json',
+		                        rootProperty: 'children'
+		                    }
+		                }
+				}
+		),
+		renderTo : Ext.getBody()
+	})
+})
+</script>
+</head>
+<body>
+
+</body>
+</html>
