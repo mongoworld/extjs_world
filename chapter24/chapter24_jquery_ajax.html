@@ -1,0 +1,32 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/31
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 24. jQuery - Ajax Class Example</title>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajax({
+		url : './server_helloworld_response.jsp',
+		method : 'POST',
+		dataType : 'json',
+		data : {param1 : '입력값1', param2 : '입력값2'},
+		success : function(response) {
+			$("#div1").html(response.result);
+			$("#div2").html(response.param1);
+			$("#div3").html(response.param2);
+		}
+	})
+})
+</script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+</body>
+</html>

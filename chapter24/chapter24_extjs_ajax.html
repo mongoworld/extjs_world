@@ -1,0 +1,33 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/31
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 24. ExtJS - Ajax Class Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.Ajax.request({
+		url : './server_helloworld_response.jsp',
+		method : 'POST',
+		params : {param1 : '입력값1', param2 : '입력값2'},
+		success : function(response) {
+			var data = Ext.JSON.decode(response.responseText);
+			Ext.get("div1").update(data.result);
+			Ext.get("div2").update(data.param1);
+			Ext.get("div3").update(data.param2);
+		}
+	})
+})
+</script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+</body>
+</html>
