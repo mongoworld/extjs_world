@@ -1,0 +1,73 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/33
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 26. ExtJS - Group Bar Chart Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript" src="./packages/sencha-charts/build/sencha-charts.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	var store = Ext.create('Ext.data.Store',{
+		                    fields : ['insurance','man','woman'],
+		                    data : [
+		                            {insurance : '국민연금', man : 74.1, woman : 62.2 },
+		                            {insurance : '건강보험', man : 77.8, woman : 64.4 },
+		                            {insurance : '고용보험', man : 74.1, woman : 61.9 },
+		                           ]
+		                });
+	Ext.create('Ext.Panel', {
+	    renderTo: Ext.getBody(),
+	    width: 500,
+	    height: 500,
+	    layout: 'fit',
+	    items: [
+	            {
+	                xtype: 'cartesian',
+					// New Config
+					title : '사회보험 가입률 현황',
+					// New Config
+					insetPadding: '40 40 40 20',
+	                axes: [{
+	                    type: 'numeric',
+	                    position: 'left',
+						//New Config
+						majorTickSteps: 10,
+						// New Config
+						maximum : 100,
+						// New Config
+						grid : true,
+						// New Config
+						title : '(%)'
+	                }, {
+	                    type: 'category',
+	                    position: 'bottom'
+	                }],
+	                series: {
+						//Add config
+						stacked: false,
+	                    type: 'bar',
+	                    axis: 'left',
+	                    xField: 'insurance',
+	                    yField: ['woman','man'],
+						//Update config
+						label: {
+							field: ['woman','man'],
+		                    display: 'outside'
+						}
+	                },
+	                //데이터 출력
+	                store: store
+	            }
+	    ]
+	});
+})
+</script>
+</head>
+<body>
+</body>
+</html>
