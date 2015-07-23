@@ -49,9 +49,6 @@ Ext.onReady(function(){
 					title : '사회보험 가입률 현황',
 					insetPadding: '40 40 40 20',
 	                axes: [ {
-	                    type: 'category',
-	                    position: 'bottom'
-	                },{
 		                    type: 'numeric',
 		                    position: 'left',
 							majorTickSteps: 10,
@@ -60,6 +57,9 @@ Ext.onReady(function(){
 							// New Config
 							grid : true,
 							renderer: function (v) { return v.toFixed(v < 10 ? 1: 0) + '%'; }
+	                },{
+	                    type: 'category',
+	                    position: 'bottom'
 	                }],
 	                series: {
 						stacked: false,
