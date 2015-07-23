@@ -1,0 +1,95 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/36
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 29. ExtJS - Bar Chart Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript" src="./packages/sencha-charts/build/sencha-charts.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	var store1 = Ext.create('Ext.data.Store',{
+                    fields : ['lecture','score1','score2'],
+                    data : [
+                            {lecture : '국어', score1 : 50, score2 : 62},
+                            {lecture : '영어', score1 : 98, score2 : 34},
+                            {lecture : '수학', score1 : 22, score2 : 100},
+                            {lecture : '과학', score1 : 66, score2 : 77},
+                            {lecture : '사회', score1 : 78, score2 : 88}
+                           ]
+                });
+	var store2 = Ext.create('Ext.data.Store',{
+                    fields : ['lecture','score1','score2'],
+                    data : [
+							{lecture : '국어', score1 : 44.6, score2 : 55.4},
+                            {lecture : '영어', score1 : 74.2, score2 : 25.8},
+                            {lecture : '수학', score1 : 18, score2 : 82},
+                            {lecture : '과학', score1 : 46.1, score2 : 53.9},
+                            {lecture : '사회', score1 : 47.3, score2 : 52.7}
+                           ]
+                });
+	
+	Ext.create('Ext.Panel', {
+	    renderTo: Ext.getBody(),
+	    width: 500,
+	    height: 500,
+	    layout: 'fit',
+		fbar : [{
+			xtype : 'button',
+			text : '점수',
+			handler : function(btn) {
+				Ext.getCmp("chart").getSeries()[0].setStacked(false);
+				Ext.getCmp("chart").setStore(store1)
+				Ext.getCmp("chart").redraw();
+			}
+		},{
+			xtype : 'button',
+			text : '백분율',
+			handler : function(btn) {
+				Ext.getCmp("chart").getSeries()[0].setStacked(true);
+				Ext.getCmp("chart").setStore(store2)
+				Ext.getCmp("chart").redraw();
+			}
+		}],
+	    items: [
+	            {
+	                xtype: 'cartesian',
+					id : 'chart',
+					flipXY: true,
+					title : '과목별 성적',
+					insetPadding: '40 40 40 20',
+	                axes: [{
+	                    type: 'numeric3d',
+	                    position: 'bottom',
+						maximum : 100,
+						majorTickSteps: 10,
+						title : '점수(백분율)'
+	                }, {
+	                    type: 'category3d',
+	                    position: 'left',
+						title : '과목별'
+	                }],
+	                series: {
+						stacked : false,
+	                    type: 'bar3d',
+	                    xField: 'lecture',
+	                    yField: ['score1','score2'],
+						label: {
+							field: ['score1','score2'],
+		                    display: 'insideEnd'
+						}
+	                },
+	                store: store1
+	            }
+	    ]
+	});
+})
+</script>
+</head>
+<body>
+</body>
+</html>

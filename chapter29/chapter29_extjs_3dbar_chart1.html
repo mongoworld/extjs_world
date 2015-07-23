@@ -1,0 +1,71 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/36
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 29. ExtJS - Bar Chart Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript" src="./packages/sencha-charts/build/sencha-charts.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	var store = Ext.create('Ext.data.Store',{
+                    fields : ['country','count'],
+                    data : [
+                            {country : 'Korea', count : 51431100},
+                            {country : 'France', count : 66259012},
+                            {country : 'UK', count : 63742977},
+                            {country : 'China', count : 1355692576},
+                            {country : 'Japan', count : 127103388},
+                            {country : 'USA', count : 318892103},
+                           ]
+                });
+	Ext.create('Ext.Panel', {
+	    renderTo: Ext.getBody(),
+	    width: 500,
+	    height: 400,
+	    layout: 'fit',
+	    items: [
+	            {
+	                xtype: 'cartesian',
+					flipXY: true,
+					title : '국가별 인구수',
+	                axes: [{
+	                    type: 'numeric3d',
+	                    position: 'bottom',
+						maximum : 1500000000,
+						majorTickSteps: 10,
+						title : '국민수',
+						renderer: function (v) {
+				            return Ext.util.Format.number(v, '0,000');
+				        }
+	                }, {
+	                    type: 'category3d',
+	                    position: 'left',
+						title : '국가명'
+	                }],
+	                series: {
+	                    type: 'bar3d',
+	                    xField: 'country',
+	                    yField: 'count',
+						label: {
+							field: 'count',
+		                    display: 'insideEnd',
+							renderer: function (v) {
+					            return Ext.util.Format.number(v, '0,000') + "명";
+					        }
+						}
+	                },
+	                store: store
+	            }
+	    ]
+	});
+})
+</script>
+</head>
+<body>
+</body>
+</html>
