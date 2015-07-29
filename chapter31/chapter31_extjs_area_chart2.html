@@ -1,0 +1,101 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/38
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 31. ExtJS - Area Chart Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript" src="./packages/sencha-charts/build/sencha-charts.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	Ext.create('Ext.Panel',{
+		renderTo : Ext.getBody(),
+		title : 'Area Chart',
+		width : 500,
+		height : 400,
+		layout : 'fit',
+		items : [{
+			 xtype: 'cartesian',
+	            store : Ext.create('Ext.data.Store',{
+	            	fields : ['date','weight1','weight2','weight3'],
+	            	data: [{
+						date : '1월',
+						weight1 : 63,
+						weight2 : 42,
+						weight3 : 54
+	            	},{
+						date : '2월',
+						weight1 : 62,
+						weight2 : 47,
+						weight3 : 53	            		
+	            	},{
+						date : '3월',
+						weight1 : 61.7,
+						weight2 : 58,
+						weight3 : 52	            		
+	            	},{
+						date : '4월',
+						weight1 : 68,
+						weight2 : 69,
+						weight3 : 48	            		
+	            	},{
+						date : '5월',
+						weight1 : 72,
+						weight2 : 88,
+						weight3 : 44	            		
+	            	},{
+						date : '6월',
+						weight1 : 80,
+						weight2 : 100,
+						weight3 : 41	            		
+	            	}]
+	            }),
+	            insetPadding: '40 40 40 40',
+	            axes: [{
+	                type: 'numeric',
+	                position: 'left',
+	                title: '변화몸무게',
+	                grid: true,
+	                fields: ['weight1','weight2','weight3']
+	            }, {
+	                type: 'category',
+	                position: 'bottom',
+	                fields: 'date'
+	            }],
+	            series: [{
+							style: {
+					            opacity: 0.60
+					        },
+					        type: 'area',
+					        xField: 'date',
+					        yField: 'weight1'
+					    },
+					    {
+							style: {
+					            opacity: 0.60
+					        },
+					        type: 'area',
+					        xField: 'date',
+					        yField: 'weight2'
+					    },
+					    {
+							style: {
+					            opacity: 0.60
+					        },
+					        type: 'area',
+					        xField: 'date',
+					        yField: 'weight3'
+					    }
+	            ]
+		}]
+	})
+})
+</script>
+</head>
+<body>
+</body>
+</html>
