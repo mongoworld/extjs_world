@@ -1,0 +1,124 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/39
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 32. ExtJS - Scatter(Bubble) Chart Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript" src="./packages/sencha-charts/build/sencha-charts.js"></script>
+<script type="text/javascript">
+
+Ext.onReady(function(){
+	var fromHSL, toHSL, seed = 1.3;
+	
+	Ext.create('Ext.Panel', {
+		renderTo : Ext.getBody(),
+        layout: 'fit',
+        width: 650,
+        items: [{
+            xtype: 'cartesian',
+            width: '100%',
+            height: 500,
+            store: Ext.create('Ext.data.Store',{
+            	fields: [ 'temp', 'price' ],
+            	data :  [
+        		         { temp: 14.2, price: 215 },
+        		         { temp: 16.4, price: 325 },
+        		         { temp: 11.9, price: 185 },
+        		         { temp: 15.2, price: 332 },
+        		         { temp: 18.5, price: 406 },
+        		         { temp: 22.1, price: 522 },
+        		         { temp: 19.4, price: 412 },
+        		         { temp: 25.1, price: 614 },
+        		         { temp: 23.4, price: 544 },
+        		         { temp: 18.1, price: 421 },
+        		         { temp: 22.6, price: 445 },
+        		         { temp: 17.2, price: 408 }
+        		     ]
+            }),
+            insetPadding: 20,
+            interactions: ['panzoom', 'itemhighlight'],
+            series: {
+                type: 'scatter',
+                xField: 'temp',
+                yField: 'price',
+                highlightCfg: {
+                    scale: 2
+                },
+                style: {
+                    renderer: function (sprite, config, rendererData, index) {
+                        var store = rendererData.store,
+                            storeItem = store.getData().items[index];
+                        config.radius = interpolate(storeItem.data.price, 0, 1000, 5, 30);
+                        config.fillOpacity = interpolate(storeItem.data.price, 0, 1000, 1, 0.7);
+                        config.fill = interpolateColor(storeItem.data.price, 0, 1000);
+                        config.stroke = config.fill;
+                        config.lineWidth = 3;
+                    }
+                }
+            },
+            axes: [{
+                type: 'numeric',
+                position: 'left',
+                fields: ['price'],
+                //add
+                maximum : 700,
+                //add
+                minimum : 0,
+                //add
+                majorTickSteps : 7,
+                grid : true,
+                //add
+                renderer: function (v, layoutContext) {
+                    return '$'+v;
+                }
+            }, {
+                type: 'numeric',
+                position: 'bottom',
+                fields: ['temp'],
+              	//add
+                majorTickSteps : 4,
+                //add
+                maximum : 30,
+                //add
+                minimum : 10,
+                //add
+                increment : 5,
+                grid: true,
+                //add
+                renderer: function (v, layoutContext) {
+                    return v + "º";
+                }
+            }]
+        }],
+        listeners : {
+			beforerender : function (obj, eOpts) {
+	            fromHSL = Ext.draw.Color.fly('blue').getHSL();
+	            toHSL = Ext.draw.Color.fly('red').getHSL();
+	            fromHSL[2] = 0.3;
+			}
+    	}
+    });
+	function interpolate(lambda, minSrc, maxSrc, minDst, maxDst) {
+	    return minDst + (maxDst - minDst) * Math.max(0, Math.min(1, (lambda - minSrc) / (maxSrc - minSrc)));
+	}
+
+	function interpolateColor(lambda, minSrc, maxSrc) {
+	    return Ext.draw.Color.fly(0, 0, 0, 0).setHSL(
+	        interpolate(lambda, minSrc, maxSrc, fromHSL[0], toHSL[0]),
+	        interpolate(lambda, minSrc, maxSrc, fromHSL[1], toHSL[1]),
+	        interpolate(lambda, minSrc, maxSrc, fromHSL[2], toHSL[2])
+	    ).toString();
+	}
+})
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

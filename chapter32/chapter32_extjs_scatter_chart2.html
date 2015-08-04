@@ -1,0 +1,88 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/39
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 32. ExtJS - Scatter Chart Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript" src="./packages/sencha-charts/build/sencha-charts.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+	var store = Ext.create('Ext.data.Store',{
+				   	 fields: ['temp', 'price' ],
+				     data: [
+				         { temp: 14.2, price: 215 },
+				         { temp: 16.4, price: 325 },
+				         { temp: 11.9, price: 185 },
+				         { temp: 15.2, price: 332 },
+				         { temp: 18.5, price: 406 },
+				         { temp: 22.1, price: 522 },
+				         { temp: 19.4, price: 412 },
+				         { temp: 25.1, price: 614 },
+				         { temp: 23.4, price: 544 },
+				         { temp: 18.1, price: 421 },
+				         { temp: 22.6, price: 445 },
+				         { temp: 17.2, price: 408 }
+				     ]
+				});
+	Ext.create('Ext.Panel',{
+		renderTo : Ext.getBody(),
+		title : 'Scatter Chart',
+		width : 540,
+		height : 400,
+		layout : 'fit',
+		 items: [{
+		        xtype: 'cartesian',
+		        height: 500,
+		        insetPadding: 40,
+		        store: store,
+		        axes: [{
+	                type: 'numeric',
+	                position: 'bottom',
+	                fields: ['temp'],
+	                //change
+	                majorTickSteps : 4,
+	                //change
+	                maximum : 30,
+	                //change
+	                minimum : 10,
+	                //add
+	                increment : 5,
+	                grid: true,
+	                //add
+	                renderer: function (v, layoutContext) {
+	                    return v + "º";
+	                }
+	            }, {
+	                type: 'numeric',
+	                position: 'left',
+	                fields: ['price'],
+	                //change
+	                maximum : 700,
+	                //change
+	                minimum : 0,
+	                //change
+	                majorTickSteps : 7,
+	                grid: true,
+	                //add
+	                renderer: function (v, layoutContext) {
+	                    return '$'+v;
+	                }
+	            }],
+	            series: [{
+	                type: 'scatter',
+	                xField: 'temp',
+	                yField: 'price'
+	            }]
+		    }]
+	})
+})
+</script>
+</head>
+<body>
+</body>
+</html>
