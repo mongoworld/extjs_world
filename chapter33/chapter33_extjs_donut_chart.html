@@ -1,0 +1,66 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/40
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 33. ExtJS - Donut Chart Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript" src="./packages/sencha-charts/build/sencha-charts.js"></script>
+<script type="text/javascript">
+
+Ext.onReady(function(){
+	var store = Ext.create('Ext.data.Store',{
+				   	 fields : ['browser', 'rate'],
+				     data: [{browser : 'Chrome',rate : 61.02},
+				            {browser : '(not set)',rate : 0.98},
+							{browser : 'IE',rate : 28.98},
+							{browser : 'Safari(in-app)',rate : 0.16},
+							{browser : 'Safari',rate : 6.82},
+							{browser : 'Android Browser',rate : 0.60},
+							{browser : 'Firefox',rate : 1.39},
+							{browser : 'YaBrowser',rate : 0.02},
+							{browser : 'Maxthon',rate : 0.03}]
+				 });
+	Ext.create('Ext.Panel', {
+		renderTo : Ext.getBody(),
+        layout: 'fit',
+        width: 450,
+        items: [{
+        		 xtype: 'polar',
+        		 insetPadding: 50,
+                 innerPadding: 20,
+        		 width: '100%',
+                 height: 450,
+                 store : store,
+                 series: [{
+                     type: 'pie',
+                     //add
+                     donut: 50,
+                     angleField: 'rate',
+                     label: {
+                         field: 'browser',
+                         display: 'rotate'
+                     },
+                     tooltip: {
+                    	  trackMouse: true,
+                    	  width: 140,
+                    	  height: 28,
+                    	  renderer: function(storeItem, item) {
+                              this.setHtml(storeItem.get('browser') + ': ' + storeItem.get('rate') + '%');
+                          }
+                    	}
+                 }]
+           }]
+    });
+})
+
+
+</script>
+</head>
+<body>
+</body>
+</html>
