@@ -1,0 +1,113 @@
+<!--  
+	Author : Mongo
+	Related Contents URL : http://mongodev.tistory.com/41
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ExtJS Chapter 34. ExtJS - Gauge Chart Example</title>
+<link href="./packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet">
+<script type="text/javascript" src="./ext-all.js"></script>
+<script type="text/javascript" src="./packages/sencha-charts/build/sencha-charts.js"></script>
+<script type="text/javascript">
+
+Ext.onReady(function(){
+	var store = Ext.create('Ext.data.Store',{
+				   	 fields : ['rpm','speed'],
+				     data: [{rpm : 0, speed : 0}]
+				 });
+	Ext.create('Ext.Panel', {
+		title : '계기판',
+		renderTo : Ext.getBody(),
+        width: 800,
+        height : 250,
+        layout : 'hbox',
+        tbar : [{
+        	xtype : 'button',
+        	text : '시속:20Km',
+        	handler : function(){
+        		store.setData([{rpm : 1, speed : 20}]);
+        	}
+        },{
+        	xtype : 'button',
+        	text : '시속:60Km',
+        	handler : function(){
+        		store.setData([{rpm : 4, speed : 60}]);
+        	}
+        },{
+        	xtype : 'button',
+        	text : '시속:120Km',
+        	handler : function(){
+        		store.setData([{rpm : 2, speed : 120}]);
+        	}
+        },{
+        	xtype : 'button',
+        	text : '시속:240Km',
+        	handler : function(){
+        		store.setData([{rpm : 8, speed : 240}]);
+        	}
+        },{
+        	xtype : 'button',
+        	text : '브레이크',
+        	handler : function(){
+        		store.setData([{rpm : 0, speed : 0}]);
+        	}
+        }],
+        items: [
+                {
+                    xtype: 'polar',
+                    height: 200,
+                    width: 400,
+                    store: store,
+                    insetPadding: 50,
+                    innerPadding: 20,
+                    id : 'rpm',
+                    axes: {
+                        title: 'RPM',
+                        type: 'numeric',
+                        position: 'gauge',
+                        minimum : 0,
+                        maximum: 8,
+                        majorTickSteps: 8,
+                    },
+                    series: {
+                        type: 'gauge',
+                        field: 'rpm',
+                        needle: true,
+                        donut: 30
+                    }
+                },
+                {
+                    xtype: 'polar',
+                    id : 'speed',
+                    height: 200,
+                    width: 400,
+                    store: store,
+                    insetPadding: 50,
+                    innerPadding: 20,
+                    axes: {
+                        title: 'Speed',
+                        type: 'numeric',
+                        position: 'gauge',
+                        minimum : 0,
+                        maximum: 260,
+                        majorTickSteps : 13
+                    },
+                    series: {
+                        type: 'gauge',
+                        field: 'speed',
+                        needle: false,
+                        donut: 30
+                    }
+                }
+           ]
+    });
+})
+
+
+</script>
+</head>
+<body>
+</body>
+</html>
